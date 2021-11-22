@@ -1,0 +1,3 @@
+[submodule "hardware_utility"]
+	path = submodule/hardware_utility
+	url = git@github.com:knyuchen/hardware_utility.git
