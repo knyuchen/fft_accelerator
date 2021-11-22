@@ -1,0 +1,32 @@
+Registers 
+
+register 0: write 2 to start
+
+register 1: read data from DRAM, 
+               start_addr (29 + 3 bit), 
+               len (32 bit)
+
+register 2: write data to DRAM, 
+               start_addr (29 + 3 bit), 
+               len (32 bit)
+
+register 3: config
+               unused bits (33 bit)
+               final shift back (5 bit)          (IG) 
+               scaling (2 bit per stage, 26 bit) (IG), 
+               n for point (2**n point) min 1, max 13 (4 bit)
+               ifft or not (1 bit)               (IG)
+
+register 4: intertupt handling, 
+               write 0 to 4 to reset interrupt
+
+----------------------------------------------------------------
+
+Operation
+
+input_config (1) : set read data address & len
+input_config (2) : set write data address & len
+input_config (3) : set configuration
+input_config (0, 2) : start operation
+
+wait for interrupt, if interrupt --> input_config (4, 0)
